@@ -1,14 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import Routes from 'shared/pc/Routes';
+import Routes from 'shared/Routes';
+import reducers from 'shared/reducers';
 
+const store = createStore(reducers);
 const rootElement = document.getElementById('root');
 
 ReactDOM.hydrate(
-  <BrowserRouter>
-    <Routes/>
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <Routes/>
+    </BrowserRouter>
+  </Provider>,
   rootElement
 );
-

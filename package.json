@@ -63,6 +63,7 @@
     "react-router-config": "1.0.0-beta.4",
     "react-router-dom": "4.2.2",
     "redux": "3.7.2",
+    "redux-actions": "^2.3.2",
     "redux-thunk": "2.2.0",
     "sass-loader": "^7.0.1",
     "serialize-javascript": "1.4.0",

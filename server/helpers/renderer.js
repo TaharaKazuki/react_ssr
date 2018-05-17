@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
-import Routes from '../../shared/pc/Routes';
+import Routes from 'shared/Routes';
 
 export default req => {
   const content = renderToString(
