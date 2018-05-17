@@ -3,9 +3,12 @@ import { createAction, handleActions } from 'redux-actions';
 const CLICK = 'CLICK';
 const CLICK_BUTTON = `${CLICK}_BUTTON`;
 
-export function clickButton() {
-  return createAction(CLICK_BUTTON)({data:{}});
-}
+export const clickButton = () => async (api) => {
+  const res = await api.get('/users');
+  return createAction(CLICK_BUTTON)({data:{'sample':res}});
+};
+export const clickAcync = () => (dispatch, getState) => setTimeout(()=>{dispatch(clickButton())},1000);
+
 const initState = {
   app:{}
 };
@@ -14,4 +17,4 @@ export default handleActions({
     ...state,
     ...data
   }),
-});
+},initState);
