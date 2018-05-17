@@ -1,7 +1,6 @@
 import path from 'path';
 import autoprefixer from 'autoprefixer';
 
-const { NODE_ENV } = process.env;
 const ROOT_PATH = path.resolve(__dirname,'.');
 const NODE_MODULES_PATH = path.resolve(ROOT_PATH,'node_modules');
 const APP_PATH = path.resolve(ROOT_PATH, 'app');

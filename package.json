@@ -7,54 +7,20 @@
     "start": "./app/bin/startServer.sh",
     "dev": "run-p dev:*",
     "dev:server": "nodemon --watch build --exec \"node build/server/bundle.js\"",
-    "dev:config-pc-server":"better-npm-run build:config:pc:server",
-    "dev:config-sp-server":"better-npm-run build:config:sp:server",
-    "dev:build-server-pc": "better-npm-run build:dev:server:pc",
-    "dev:build-server-sp": "better-npm-run build:dev:server:sp",
-    "dev:build-client-pc": "better-npm-run build:dev:client:pc",
-    "dev:build-client-sp": "better-npm-run build:dev:client:sp"
+    "dev:build-server": "better-npm-run build:dev:server",
+    "dev:build-client": "better-npm-run build:dev:client"
   },
   "betterScripts": {
-    "build:dev:server:pc": {
+    "build:dev:server": {
       "command": "webpack --progress --colors --config webpack.server.babel.js --watch",
       "env": {
-        "NODE_ENV": "development",
-        "DEVICE": "pc"
+        "NODE_ENV": "development"
       }
     },
-    "build:dev:server:sp": {
-      "command": "webpack --progress --colors --config webpack.server.babel.js --watch",
-      "env": {
-        "NODE_ENV": "development",
-        "DEVICE": "sp"
-      }
-    },
-    "build:dev:client:pc": {
+    "build:dev:client": {
       "command": "webpack --progress --colors --config webpack.client.babel.js --watch",
       "env": {
-        "NODE_ENV": "development",
-        "DEVICE": "pc"
-      }
-    },
-    "build:dev:client:sp": {
-      "command": "webpack --progress --colors --config webpack.client.babel.js --watch",
-      "env": {
-        "NODE_ENV": "development",
-        "DEVICE": "sp"
-      }
-    },
-    "build:config:pc:server":{
-      "command": "node server/index.js",
-      "env": {
-        "NODE_ENV": "development",
-        "DEVICE": "pc"
-      }
-    },
-    "build:config:sp:server":{
-      "command": "node server/index.js",
-      "env": {
-        "NODE_ENV": "development",
-        "DEVICE": "sp"
+        "NODE_ENV": "development"
       }
     }
   },

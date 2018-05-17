@@ -11,3 +11,4 @@ ReactDOM.hydrate(
   </BrowserRouter>,
   rootElement
 );
+
