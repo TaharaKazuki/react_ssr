@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import Routes from 'shared/Routes';
+import Routes from 'shared/pc/Routes';
 import reducers from 'shared/pc/reducers';
 
 const store = createStore(reducers);

@@ -1,22 +1,7 @@
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import { StaticRouter } from 'react-router-dom';
-import Routes from 'shared/Routes';
+import pcRender from 'server/pc/renderer';
+import spRender from 'server/sp/renderer';
 
-export default req => {
-  const content = renderToString(
-    <StaticRouter location={req.path} context={{}}>
-      <Routes/>
-    </StaticRouter>
-  );
+const { DEVICE } = process.env;
+const deviceRender = DEVICE === 'pc' ? pcRender : spRender;
 
-  return `
-    <html>
-      <head></head>
-        <body>
-          <div id="root">${content}</div>
-          <script src="bundle.js"></script>
-        </body>
-    </html>
-  `;
-}
+export default (req) => deviceRender(req);
