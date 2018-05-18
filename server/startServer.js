@@ -7,7 +7,7 @@ const { DEVICE } = process.env;
 
 const port = DEVICE === 'pc' ? 3001: 3002;
 
-app.use(Express.static('build/client'));
+app.use(Express.static(`build/client/${DEVICE}`));
 
 app.get('*',(req,res)=> {
   res.send(renderer(req));
