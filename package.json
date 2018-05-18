@@ -5,28 +5,63 @@
   "main": "index.js",
   "scripts": {
     "start": "./app/bin/startServer.sh",
-    "dev": "run-p dev:*",
-    "dev:server": "nodemon --watch build --exec \"node build/server/bundle.js\"",
-    "dev:build-server": "better-npm-run build:dev:server",
-    "dev:build-client": "better-npm-run build:dev:client"
+    "dev": "run-p dev-client-build dev-server-build dev-start",
+    "dev-client-build": "run-p dev-client-pc-build dev-client-sp-build",
+    "dev-client-pc-build": "bnr build:dev:client:pc",
+    "dev-client-sp-build": "bnr build:dev:client:sp",
+    "dev-server-build": "run-p dev-server-pc-build dev-server-sp-build",
+    "dev-server-pc-build": "bnr build:dev:server:pc",
+    "dev-server-sp-build": "bnr build:dev:server:sp",
+    "dev-start": "run-p dev-pc-start dev-sp-start",
+    "dev-pc-start": " bnr dev:pc:start:server",
+    "dev-sp-start": " bnr dev:sp:start:server"
   },
   "betterScripts": {
-    "build:dev:server": {
-      "command": "webpack --progress --colors --config webpack.server.babel.js --watch",
-      "env": {
-        "NODE_ENV": "development"
-      }
-    },
-    "build:dev:client": {
+    "build:dev:client:pc": {
       "command": "webpack --progress --colors --config webpack.client.babel.js --watch",
       "env": {
-        "NODE_ENV": "development"
+        "NODE_ENV": "development",
+        "DEVICE": "pc"
+      }
+    },
+    "build:dev:client:sp": {
+      "command": "webpack --progress --colors --config webpack.client.babel.js --watch",
+      "env": {
+        "NODE_ENV": "development",
+        "DEVICE": "sp"
+      }
+    },
+    "build:dev:server:pc": {
+      "command": "webpack --progress --colors --config webpack.server.babel.js --watch",
+      "env": {
+        "NODE_ENV": "development",
+        "DEVICE": "pc"
+      }
+    },
+    "build:dev:server:sp": {
+      "command": "webpack --progress --colors --config webpack.server.babel.js --watch",
+      "env": {
+        "NODE_ENV": "development",
+        "DEVICE": "sp"
+      }
+    },
+    "dev:pc:start:server": {
+      "command": "nodemon --watch build --exec \"node build/server/bundle.js\"",
+      "env": {
+        "NODE_ENV": "development",
+        "DEVICE": "pc"
+      }
+    },
+    "dev:sp:start:server": {
+      "command": "nodemon --watch build --exec \"node build/server/bundle.js\"",
+      "env": {
+        "NODE_ENV": "development",
+        "DEVICE": "sp"
       }
     }
   },
   "license": "MIT",
   "dependencies": {
-    "@storybook/cli": "^3.4.4",
     "autoprefixer": "^8.5.0",
     "axios": "0.16.2",
     "babel-cli": "6.26.0",
@@ -50,7 +85,6 @@
     "css-loader": "^0.28.11",
     "express": "4.15.4",
     "express-http-proxy": "1.0.6",
-    "getstorybook": "^1.7.0",
     "lodash": "4.17.4",
     "node-sass": "^4.9.0",
     "nodemon": "1.12.0",

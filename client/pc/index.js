@@ -4,7 +4,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import Routes from 'shared/Routes';
-import reducers from 'shared/reducers';
+import reducers from 'shared/pc/reducers';
 
 const store = createStore(reducers);
 const rootElement = document.getElementById('root');
