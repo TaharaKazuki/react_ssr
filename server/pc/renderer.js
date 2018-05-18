@@ -15,7 +15,7 @@ export default (req) => {
       <head></head>
         <body>
           <div id="root">${content}</div>
-          <script src="bundle.js"></script>
+          <script src="bundle.js"/>
         </body>
     </html>
   `;
