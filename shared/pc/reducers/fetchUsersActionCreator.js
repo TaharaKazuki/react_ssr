@@ -7,13 +7,12 @@ const FETCH = 'FETCH';
 const FETCH_USERS = FETCH + '_USERS';
 
 export const fetchUser = () => async dispatch => {
-  const res = await axios.get('/https://react-ssr-api.herokuapp.com/users');
-  dispatch(createAction(FETCH_USERS)({data:{}}));
+  const res = await axios.get('https://react-ssr-api.herokuapp.com/users');
+  dispatch(createAction(FETCH_USERS)({data:{userList:res.data}}));
 };
 
 const initState = {
-  app:{},
-  flag:true,
+  userList:{},
 };
 
 export default handleActions({

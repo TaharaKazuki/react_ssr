@@ -10,11 +10,18 @@ export default connect(
 )(class UserListContainer extends Component{
   componentDidMount(){
     this.props.fetchUser();
-    // console.log(this.props.user);
   }
   render(){
+    const { userList } = this.props.user;
+    console.log(userList);
     return (
-      <div>test</div>
+      <ul>
+        {Array.isArray(userList)
+          ? userList.map(user => (
+            <li key={user.id}>{user.name}</li>))
+          :null
+        }
+      </ul>
     );
   }
 });
