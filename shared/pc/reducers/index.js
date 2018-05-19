@@ -1,7 +1,6 @@
+/* PC combineReducer */
+import fetchUser from './fetchUsersActionCreator';
 
-import { combineReducers } from 'redux';
-import clickButton from './clickButtonActionCreator';
-
-export default combineReducers({
-  clickButton
+export default({
+  user:fetchUser,
 });
