@@ -2,7 +2,14 @@
 
 ## 前提
 フロントエンド開発環境（React+Reduxの構成において）SSR（ServerSideRendering）を実現する為のテンプレートととして作成しております。   
-実装の参考例としてsampleのComponentを用意し、Viewが閲覧できるようにしております。
+実装の参考例としてsampleのComponentを用意し、簡易的な挙動の確認が閲覧できるようにしております。
+
+### 実装における仕様について
+- React (Viewを形成)
+- Redux (状態を保持・更新等)
+- node [express]  (server)
+- webpack (bundleツール)
+- scss (styleレイアウト)
 
 ### Reactとは
 [React公式](https://reactjs.org/)   
@@ -11,17 +18,34 @@ Facebookが開発したView(UIを扱う)を構成するJavascriptライブラリ
 ### Reduxとは
 [Redux公式](https://redux.js.org/)   
 Reactが扱うUIのstate(状態)を管理するためのフレームワークであり、複雑なアプリケーションを作る際に　　　
-stateの変更箇所が複数に分散されることを防ぎ、一元管理を容易にすることを目的に導入します。
+stateの変更箇所が複数に分散されることを防ぎ、一元管理を容易にすることを目的に導入しております。
 
 ### SSR(ServerSideRendering)とは
-
 #### 概念
-
+```
+Serevr Side Renderingというときに、いろんな意味があるのですが、  
+（狭義の意味としては、）HTMLを構築する仕組みがブラウザとサーバで共通のものが入ってきていて、  
+それを共通のロジックを使って動かしましょう、というのがServer Side Renderingなんですね。
+```
 
 #### なぜ必要なのか？
+- 理由① SEO
+```
+GoogleのクローラはJavaScriptを実行できるので、HTMLの中にコンテンツがなくても、JavaScriptの実行によってコンテンツが表示されるのであれば、それを読み込んでインデックス化してくれるはずなのですが、しかし100％完全にJavaScriptを実行してそのページを正しくレンダリングしてくれる保証はありませんと。
+だからSEOをちゃんとしたいのであれば、Server Side Renderingをしましょうと。
+```
 
-- 理由 
-- 理由
+- 理由② パフォーマンスの改善
+```
+
+
+```
+
+
+[Server Side Renderingについて知るべきこと。Server Side Renderingとは何か？   
+ それによって何が改善されるのか？   
+ （前編） ng-japan 2017
+](https://www.publickey1.jp/blog/17/server_side_renderingserver_side_rendering_ng-japan_2017.html)より抜粋。
 
 
 ## ディレクトリ構成概要
@@ -44,18 +68,41 @@ React（Redux）の[プラクティスの一つとして](https://redux.js.org/b
 コンポーネントの再利用性を高めることができるとの思想であり、当テンプレートにおいてもこれに沿った実装（ファイル構成）をしております。
 
 ### Container Componentとは
-ロジックのみに専念し、(記載途中)
+Container componentはPresentational componentに具体的なデータ(props)やコールバック関数(action)を与えるコンポーネントであり、   
+ReactのlifeCycleを有しております。
 
 ### Presentational Componentとは
 表示のみに専念しており、propsとして与えられるデータを表示することに専念しております。
 このComponentでは状態を保持しない為、`Stateless functional component`として書かれることも多く、   
 当テンプレートにおいてもstatelessにて実装を行っております。
 
-#### sample code
+#### sample code（Container Component）
+```javascript
+export default class Sample extends Comment {
+  componentDidMount(){
+    // lifeCycle
+  }
+  render(){
+    return (
+      <Sample {...this.props}/>
+    )
+  }
+}
+
+export default (props)=> {
+  // appは親であるcontainer componentから渡されたデータ
+  const { app } = props;
+  return (
+    <div>{app}</div>
+  );
+};
+```
+
+#### sample code（Container Component）
 ```javascript
 export default (props)=> {
+  // appは親であるcontainer componentから渡されたデータ
   const { app } = props;
-  
   return (
     <div>{app}</div>
   );
@@ -79,9 +126,7 @@ Reduxの構成としてファイル構成は[`Ducks`](https://medium.com/@scbarr
 ## script commandについて
 | command | path | 説明 |
 | --- | --- | --- |
-| yarn start | PC:localhost:8080/ SP:localhost:8090 | localにて確認 |
-| yarn build-pro| --- | productionモードでbuild |
-| yarn storybook | localhost:6006 | storybookが起動され、localにて確認 |
+| yarn start | PC:localhost:3001/ SP:localhost:3002| localにて確認 |
 
 #### better-npm-runを使用している理由について
 （以下の2点から使用しております。）
@@ -97,7 +142,7 @@ app/bin/配下のshell scriptにyarn scriptコマンドの呼出しを記載
 つきましては、yarn run スクリプト名を呼出し→ app/bin/配下のshell script → 適宜のyarn script 呼出しのフローとなっております。
 
 ## routing設定について
-Routingのライブラリとして[`React Router`](https://github.com/ReactTraining/react-router)を今回、使用している。   
+Routingのライブラリとして[`React Router`](https://github.com/ReactTraining/react-router)を今回、使用しております。   
 - [sample](https://github.com/TaharaKazuki/react-router-sample)
 
 ## Javascript記法について
@@ -107,4 +152,4 @@ ES6記法にて実装をおこなっております。
 記載途中
 
 ## webpackについて
-記載途中
+
