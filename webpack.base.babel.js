@@ -1,5 +1,6 @@
 import path from 'path';
 import autoprefixer from 'autoprefixer';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 const ROOT_PATH = path.resolve(__dirname,'.');
 const NODE_MODULES_PATH = path.resolve(ROOT_PATH,'node_modules');
@@ -27,32 +28,33 @@ module.exports = {
       },
       {
         test:/\.scss?$/,
-        use: [
-          { loader: "style-loader"},
-          { loader: "css-loader",
-            options: {
-              minimize: true,
-              sourceMap: true,
-              modules: true,
-              importLoaders: 2,
-              localIdentName: '[hash:base64:5]'
+        use: ExtractTextPlugin.extract({
+          use: [
+            { loader: "css-loader",
+              options: {
+                minimize: true,
+                sourceMap: true,
+                modules: true,
+                importLoaders: 2,
+                localIdentName: '[hash:base64:5]'
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: loader => [
+                  autoprefixer()
+                ]
+              }
+            },
+            {
+              loader: 'sass-loader',
+              options:{
+                outputStyle: 'expanded'
+              }
             }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: loader => [
-                autoprefixer()
-              ]
-            }
-          },
-          {
-            loader: 'sass-loader',
-            options:{
-              outputStyle: 'expanded'
-            }
-          }
-        ]
+          ]
+        })
       }
     ]
   },
@@ -65,5 +67,11 @@ module.exports = {
       client: CLIENT_PATH,
       shared: SHARED_PATH
     }
-  }
+  },
+  plugins: [
+    new ExtractTextPlugin({
+      filename: 'css/style.css',
+      allChunks: true
+    }),
+  ],
 };
