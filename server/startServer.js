@@ -9,7 +9,7 @@ const app = new Express();
 app.use(Express.static(`build/client/${DEVICE}`));
 
 app.get('*',(req,res)=> {
-  const store = createStore();
+  const store = createStore(req);
   res.send(renderer(req, store));
 });
 
