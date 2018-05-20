@@ -4,22 +4,25 @@ import { connect } from 'react-redux';
 import { fetchUser } from 'shared/pc/reducers/fetchUsersActionCreator';
 import UserList from 'shared/pc/components/pages/UserListPage/UserList';
 
-export default connect(
-  state => ({
-    user: state.user
-  }),
-  { fetchUser }
-)(class UserListPageContainer extends Component{
-  componentDidMount(){
-    this.props.fetchUser();
-  }
-  render(){
-    return (
-      <UserList {...this.props}/>
-    );
-  }
-});
-const loadData = () => {
-  console.log('通過します');
+const loadData = (store) => {
+  return store.dispatch(fetchUser());
 };
-export { loadData };
+
+export default {
+  loadData,
+  component: connect(
+    state => ({
+      user: state.user
+    }),
+    { fetchUser }
+  )(class UserListPageContainer extends Component{
+    componentDidMount(){
+      this.props.fetchUser();
+    }
+    render(){
+      return (
+        <UserList {...this.props}/>
+      );
+    }
+  })
+};

@@ -16,11 +16,14 @@ app.use(Express.static(`build/client/${DEVICE}`));
 app.get('*',(req,res)=> {
   const store = createStore(req);
 
-  matchRoutes(route, req.path).map(({ route })=>{
-    return route.loadData ? route.loadData() : null;
+  const promise = matchRoutes(route, req.path).map(({ route })=>{
+    return route.loadData ? route.loadData(store) : null;
   });
 
-  res.send(renderer(req, store));
+  Promise.all(promise).then(() => {
+    res.send(renderer(req, store));
+  });
+
 });
 
 app.listen(port, ()=> {
