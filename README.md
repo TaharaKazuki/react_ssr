@@ -37,16 +37,15 @@ GoogleのクローラはJavaScriptを実行できるので、HTMLの中にコン
 
 - 理由② パフォーマンスの改善
 ```
-
-
+通常、Reactを使用した際にHTMLが返されてJavaScriptを評価してそこからtemplateの表示になる為、   
+server sideからHTMLが返される場合と比べて当然時間が掛かってしまうことになりますが、   
+server sideから評価されたtemplateとして返すことで、上記の問題が解決しパフォーマンス改善につながります。
 ```
 
-
-[Server Side Renderingについて知るべきこと。Server Side Renderingとは何か？   
+当項目、[Server Side Renderingについて知るべきこと。Server Side Renderingとは何か？   
  それによって何が改善されるのか？   
  （前編） ng-japan 2017
 ](https://www.publickey1.jp/blog/17/server_side_renderingserver_side_rendering_ng-japan_2017.html)より抜粋。
-
 
 ## ディレクトリ構成概要
 | ディレクトリ | 説明 |
@@ -123,14 +122,27 @@ Reduxの構成としてファイル構成は[`Ducks`](https://medium.com/@scbarr
 1ファイルでの扱いとなっても問題は無く、見通しも良くなる為。
 当構成においてはreducers配下にファイル末に〇〇（スネークケース）Action.jsと置くことで`Reducer` `Action` `ActionCreator`を一つのファイルとして纏めております。
 
+また、構造の見通しを良くする為にRedux推奨である、[`redux-actions`](https://redux-actions.js.org/introduction)を使用して実装しております。
+
+sample code
+```javascript
+
+
+
+
+
+```
+
+
 ## script commandについて
 | command | path | 説明 |
 | --- | --- | --- |
-| yarn start | PC:localhost:3001/ SP:localhost:3002| localにて確認 |
+| yarn start | PC:localhost:3001/ localhost:3002| localにて確認（3001/PC用・3002/SP用として仮割当）|
+※`yarn start`のcommandで各タスクが呼び出せるように調整を行っております。
+調整に伴い、better-npm-run/npm-run-allを使用。
 
 #### better-npm-runを使用している理由について
 （以下の2点から使用しております。）
-
 - 環境変数=値 yarn run スクリプト名という書き方でyarn-scirptを発火させた場合、通常（主にMacでは）process.env.環境変数でnode内の環境変数を参照できるが
 OS状況によっては上手く動かない為。
 package.json内にそれぞれの（build or deploy)タスクで利用する環境変数を設定できることとnode内での環境変数へのアクセスが上手くいく様にする為。
@@ -139,17 +151,18 @@ npm-run-allを使用（以下の点から使用しております。）
 - 当Projectでは各環境に適応（ディバイスやドメイン）させる為にscriptコマンドで設定しているタスクが多岐に渡っており、それらを1対1のコマンドで呼ぶことは非効率的であり、また、npm-run-allを利用することで、複数のタスクを並列または順序ごとに簡単に呼べるようなる為。
 app/bin/配下のshell scriptにyarn scriptコマンドの呼出しを記載
 
-つきましては、yarn run スクリプト名を呼出し→ app/bin/配下のshell script → 適宜のyarn script 呼出しのフローとなっております。
+つきましては、`yarn start` スクリプト名を呼出し→ app/bin/配下のshell script → 適宜のyarn script 呼出しのフローとなっております。
 
 ## routing設定について
 Routingのライブラリとして[`React Router`](https://github.com/ReactTraining/react-router)を今回、使用しております。   
 - [sample](https://github.com/TaharaKazuki/react-router-sample)
 
 ## Javascript記法について
-ES6記法にて実装をおこなっております。
+[ES6](http://es6-features.org/#Constants)記法にて実装をおこなっております。
 
 ## sassについて
-記載途中
+sassによるレイアウト実現を準備・調整中。
 
 ## webpackについて
-
+Javascriptのバンドルツールとしてwebpackを使用しております。
+また、今回はSSR（server side rendering）実現の為、base/server/clientに分割させております。
