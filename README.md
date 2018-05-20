@@ -152,6 +152,7 @@ export default handleActions({
 | command | path | 説明 |
 | --- | --- | --- |
 | yarn start | PC:localhost:3001/ localhost:3002| localにて確認（3001/PC用・3002/SP用として仮割当）|
+
 ※`yarn start`のcommandで各タスクが呼び出せるように調整を行っております。
 調整に伴い、better-npm-run/npm-run-allを使用。
 
@@ -178,5 +179,7 @@ Routingのライブラリとして[`React Router`](https://github.com/ReactTrain
 sassによるレイアウト実現を準備・調整中。
 
 ## webpackについて
-Javascriptのバンドルツールとしてwebpackを使用しております。
+Javascriptのバンドルツールとしてwebpackを使用しております。   
 また、今回はSSR（server side rendering）実現の為、base/server/clientに分割させております。
+baseを軸としてclient用、server用で設定値を変更しております。   
+※webpack.config.jsのmergeに関しては、[`webpack-merge`](https://www.npmjs.com/package/webpack-merge)を使用しております。
