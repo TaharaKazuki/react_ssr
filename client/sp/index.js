@@ -9,16 +9,14 @@ import { BrowserRouter } from 'react-router-dom';
 import Routes from 'shared/sp/Routes';
 import reducers from 'shared/common/reducers';
 
-export default () => {
-  const store = createStore(reducers, {}, applyMiddleware(thunk));
-  const rootElement = document.getElementById('root');
+const store = createStore(reducers, {}, applyMiddleware(thunk));
+const rootElement = document.getElementById('root');
 
-  ReactDOM.hydrate(
-    <Provider store={store}>
-      <BrowserRouter>
-        <div>{renderRoutes(Routes)}</div>
-      </BrowserRouter>
-    </Provider>,
-    rootElement
-  );
-}
+ReactDOM.hydrate(
+  <Provider store={store}>
+    <BrowserRouter>
+      <div>{renderRoutes(Routes)}</div>
+    </BrowserRouter>
+  </Provider>,
+  rootElement
+);

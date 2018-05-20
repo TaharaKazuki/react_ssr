@@ -19,3 +19,7 @@ export default connect(
     );
   }
 });
+const loadData = () => {
+  console.log('通過します');
+};
+export { loadData };
