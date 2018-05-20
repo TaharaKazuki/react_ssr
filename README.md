@@ -50,7 +50,6 @@ server sideから評価されたtemplateとして返すことで、上記の問�
 ## ディレクトリ構成概要
 | ディレクトリ | 説明 |
 | ---- | ---- |
-| .storybook  | [`storybook`](https://storybook.js.org/)で必要なmodule等が格納されている。 <br/>UI作成観点におけるパーツマップの実装や[`インターフェイスインベントリー`](http://bradfrost.com/blog/post/interface-inventory/)との照らし合わせに利用 |
 | /build | bundle(webpackにより纏められた)されたJS（bundle.js）がDEVICE毎に出力され |
 | /shared | clientとserverの共通ロジックであるファイルを格納している |
 | /src | アプリケーションの元となるファイルが格納 |
