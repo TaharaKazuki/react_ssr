@@ -126,13 +126,28 @@ Reduxの構成としてファイル構成は[`Ducks`](https://medium.com/@scbarr
 
 sample code
 ```javascript
+import { createAction, handleActions} from 'redux-actions';
 
+// Actionのtypeとなる一意の値を変数設定。
+const SAMPLE = 'SAMPLE';
 
+// Component内で使用する、Actionとして関数を設定、内部でactionCreatorを指定
+const sampleAction = () => {
+  return createAction(SAMPLE)({data:{}});
+}
+// 初期値（state）
+const initState = {
+  sampleData: {}
+};
 
-
-
+// reducers
+export default handleActions({
+  [SAMPLE]:(state, {payload:{data}}) => ({
+    ...state,
+    ...data,
+  })
+})
 ```
-
 
 ## script commandについて
 | command | path | 説明 |
