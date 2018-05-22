@@ -30,6 +30,7 @@ module.exports = {
         test:/\.scss?$/,
         use: ExtractTextPlugin.extract({
           use: [
+            { loader: "isomorphic-style-loader" },
             { loader: "css-loader",
               options: {
                 minimize: true,
