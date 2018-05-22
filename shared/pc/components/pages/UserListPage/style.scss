@@ -4,3 +4,6 @@
 .sample > li {
   color: red;
 }
+.sample > li:first-child {
+  color: blue;
+}
