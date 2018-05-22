@@ -67,7 +67,8 @@ module.exports = {
       server: SERVER_PATH,
       client: CLIENT_PATH,
       shared: SHARED_PATH
-    }
+    },
+    extensions: ['js','scss']
   },
   plugins: [
     new ExtractTextPlugin({
