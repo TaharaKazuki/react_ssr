@@ -207,6 +207,7 @@ export default (props) => {
 }
 ```
 
+sample code(scss)
 ```scss
 
 .itemList {
