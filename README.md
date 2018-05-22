@@ -176,7 +176,49 @@ Routingのライブラリとして[`React Router`](https://github.com/ReactTrain
 [ES6](http://es6-features.org/#Constants)記法にて実装をおこなっております。
 
 ## sassについて
-sassによるレイアウト実現を準備・調整中。
+各Componentのディレクトリ内にそのComponentに対応するstyle.scssを用意しており、   
+Componentファイルに対象となるscssファイルをimportした上で、helper内にあるcssConnector.jsを通して実装を行います。
+通常のscss同様にネスト記法/mixin等、scssの持っている機能は通常通り、使用できます。
+
+sample code(JSX:class名の付与の仕方）
+```javascript
+import React from 'react';
+import style from './style.scss';
+import cssConnector from 'shared/helpers/cssConnector';
+const css = cssConnector(style);
+
+export default (props) => {
+  const { itemArray } = props;
+  
+  return (
+    /* 下記のようにclassNameに対しcssの関数を渡し、その関数内にscssで指定するclass名を指定する。
+     * JSXがHTMLとして出力される際には指定したclass名とハッシュ値が付与され、bundleされたcssファイルの
+     * ハッシュ値がclass名として、styleを形成する。
+     */
+    <ul className={css('itemList')}>
+      {Array.isArray(itemArray)
+        ? itemArray.map(item=> (
+          <li className={css('list')} key={item.id}>{item.name}</li>    
+        ))
+        : null
+      }
+    </ul>
+  );
+}
+```
+
+```scss
+
+.itemList {
+  color : red;
+  text-decoration: none;
+  list-style: disc;
+  .list {
+    font-weight: bold;
+  }
+}
+
+```
 
 ## webpackについて
 Javascriptのバンドルツールとしてwebpackを使用しております。   
