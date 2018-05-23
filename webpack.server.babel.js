@@ -10,7 +10,7 @@ const config = {
   entry:'./server/startServer.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(ROOT_PATH,'build/server/')
+    path: path.resolve(ROOT_PATH,'build/server')
   },
   externals:[webpackNodeExternals()]
 };

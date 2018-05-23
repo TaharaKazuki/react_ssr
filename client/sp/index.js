@@ -9,7 +9,10 @@ import { BrowserRouter } from 'react-router-dom';
 import Routes from 'shared/sp/Routes';
 import reducers from 'shared/sp/reducers';
 
-const store = createStore(reducers, {}, applyMiddleware(thunk));
+const store = createStore(
+  reducers,
+  {},
+  applyMiddleware(thunk));
 const rootElement = document.getElementById('root');
 
 ReactDOM.hydrate(
