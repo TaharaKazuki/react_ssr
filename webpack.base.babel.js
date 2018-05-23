@@ -2,7 +2,7 @@ import path from 'path';
 import autoprefixer from 'autoprefixer';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
-const ROOT_PATH = path.resolve(__dirname,'..');
+const ROOT_PATH = path.resolve(__dirname,'.');
 const NODE_MODULES_PATH = path.resolve(ROOT_PATH,'node_modules');
 const APP_PATH = path.resolve(ROOT_PATH, 'app');
 const BUILD_PATH = path.resolve(ROOT_PATH,'build');
