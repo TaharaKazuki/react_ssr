@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
 import { BrowserRouter } from 'react-router-dom';
 import Routes from 'shared/pc/Routes';
-import reducers from 'shared/common/reducers';
+import reducers from 'shared/pc/reducers';
 
 const store = createStore(
   reducers,

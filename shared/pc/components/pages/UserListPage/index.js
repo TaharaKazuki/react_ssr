@@ -1,7 +1,7 @@
 /* container component */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchUser } from 'shared/pc/reducers/fetchUsersActionCreator';
+import { fetchUser } from 'shared/common/reducers/fetchUsersActionCreator';
 import UserList from 'shared/pc/components/pages/UserListPage/UserList';
 
 const loadData = (store) => {

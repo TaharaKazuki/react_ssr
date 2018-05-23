@@ -1,8 +1,5 @@
-import { combineReducers } from 'redux';
-import pcReducer from 'shared/pc/reducers';
-import spReducer from 'shared/sp/reducers';
+import user from './fetchUsersActionCreator';
 
-export default combineReducers({
-  ...pcReducer,
-  ...spReducer
-});
+export default {
+  user
+};

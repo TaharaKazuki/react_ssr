@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import reducers from 'shared/common/reducers';
+import reducers from 'shared/sp/reducers';
 
 export default () => {
   const store = createStore(

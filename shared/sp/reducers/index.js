@@ -1,5 +1,7 @@
 /* SP combineReducer */
-import samplefetchUsers from './samplefetchUsersActionCreator';
-export default ({
-  samplefetchUsers: samplefetchUsers
+import { combineReducers } from 'redux';
+import commonReducers from 'shared/common/reducers';
+
+export default combineReducers({
+  ...commonReducers
 });

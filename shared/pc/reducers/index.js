@@ -1,6 +1,7 @@
 /* PC combineReducer */
-import fetchUser from './fetchUsersActionCreator';
+import { combineReducers } from 'redux';
+import commonReducers from 'shared/common/reducers';
 
-export default({
-  user:fetchUser,
+export default combineReducers({
+  ...commonReducers
 });
