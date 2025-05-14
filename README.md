@@ -1,4 +1,4 @@
-# [WIP]react_redux_ssr
+# react_redux_ssr
 
 ## 前提
 フロントエンド開発環境（React+Reduxの構成において）SSR（ServerSideRendering）を実現する為のテンプレートととして作成しております。   
